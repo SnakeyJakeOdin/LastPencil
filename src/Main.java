@@ -4,15 +4,17 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int numPencils = getNumPencils();
-        String whoGoesFirst = getWhoGoesFirst();
-        System.out.println(numPencils);
-        System.out.println(whoGoesFirst);
+        displayStartingState();
     }
 
-    public static int getNumPencils() {
+    public static String getNumPencilsDisplay() {
         System.out.println("How many pencils would you like to use:");
-        return scanner.nextInt();
+        int n = scanner.nextInt();    // number of loop iterations
+        String pencils = "";          // physical pencil representation
+        for (int i = 0; i < n; i++) {
+            pencils += "|";
+        }
+        return pencils;
     }
 
     public static String getWhoGoesFirst() {
@@ -30,5 +32,9 @@ public class Main {
         else {
             return "\"ERROR: No valid name was chosen\"";
         }
+    }
+
+    public static void displayStartingState() {
+        System.out.printf("%s%n%s is going first!", getNumPencilsDisplay(), getWhoGoesFirst());
     }
 }
