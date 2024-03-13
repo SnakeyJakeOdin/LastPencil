@@ -1,6 +1,15 @@
+import java.util.Scanner;
+
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        System.out.println("|||");
-        System.out.println("Your turn!");
+        int numPencils = getNumPencils();
+        System.out.println(numPencils);
+    }
+
+    public static int getNumPencils() {
+        System.out.println("How many pencils would you like to use:");
+        return scanner.nextInt();
     }
 }
