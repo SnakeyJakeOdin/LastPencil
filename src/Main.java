@@ -37,7 +37,20 @@ public class Main {
 
     public static int getNumPencils() {
         System.out.println("How many pencils would you like to use:");
-        return scanner.nextInt();
+        String n = "";
+
+        boolean isValid = false;
+        while (!isValid) {
+            n = scanner.nextLine();
+            try {
+                int i = Integer.parseInt(n);
+                System.out.println("SUCCESS: Numeric input");
+                isValid = true;
+            } catch (Exception e) {
+                System.out.println("ERROR: Not a numeric input.");
+            }
+        }
+        return Integer.parseInt(n);
     }
 
     public static String getFirstPlayer(String name0, String name1) {
@@ -63,39 +76,5 @@ public class Main {
         Arrays.fill(stickArray, '|');
         return stickArray;
     }
-
-    /*
-    public static int getPencilCount() {
-        System.out.println("How many pencils would you like to use:");
-        return scanner.nextInt();
-    }
-
-    public static String createPencilString(int n) {
-        stickArray = new char[n];
-        Arrays.fill(stickArray, '|');
-        return String.valueOf(stickArray);
-    }
-
-    public static String getWhoGoesFirst() {
-        String name1 = "John";
-        String name2 = "Niko";
-        System.out.printf("Who will be the first (%s, %s):%n", name1, name2);
-
-        String userChoice = scanner.next();
-        if (userChoice.equalsIgnoreCase(name1)) {
-            return name1;
-        }
-        else if (userChoice.equalsIgnoreCase(name2)) {
-            return name2;
-        }
-        else {
-            return "\"ERROR: No valid name was chosen\"";
-        }
-    }
-
-    public static void displayStartingState() {
-        System.out.printf("%s%n%s's turn", createPencilString(getPencilCount()), getWhoGoesFirst());
-    }
-     */
 
 }
