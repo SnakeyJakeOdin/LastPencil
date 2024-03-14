@@ -43,9 +43,18 @@ public class Main {
             else {
                 System.out.printf("%s's turn:%n", turnOrder[1]);
             }
-            numSticks--;
+            numSticks -= scanner.nextInt();
+            for (int i = 0; i < numSticks; i++) {
+                System.out.print(stickArray[i]);
+            }
+            System.out.println();
             turn++;
         }
+    }
+
+    public static int getNumPencils() {
+        System.out.println("How many pencils would you like to use:");
+        return scanner.nextInt();
     }
 
     /*
