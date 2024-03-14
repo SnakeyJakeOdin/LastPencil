@@ -55,7 +55,6 @@ public class Main {
             turnOrder[0] = name1;
             turnOrder[1] = name0;
         }
-        System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
         return turnOrder;
     }
 
