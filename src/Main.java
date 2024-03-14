@@ -62,13 +62,24 @@ public class Main {
     }
 
     public static String getFirstPlayer(String name0, String name1) {
-        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
-        return scanner.next();
+        String s = "";
+        boolean isValid = false;
+        while (!isValid) {
+            System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
+            s = scanner.nextLine();
+            if (name0.equals(s) || name1.equals(s)) {
+                isValid = true;
+            }
+            else {
+                System.out.printf("Choose between '%s' and '%s'%n", name0, name1);
+            }
+        }
+        return s;
     }
 
     public static String[] createTurnArray(String player, String name0, String name1) {
         String[] turnOrder = new String[2];
-        if (name0.equalsIgnoreCase(player)) {
+        if (name0.equals(player)) {
             turnOrder[0] = name0;
             turnOrder[1] = name1;
         }
