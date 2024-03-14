@@ -6,21 +6,11 @@ public class Main {
     // public static char[] stickArray;
 
     public static void main(String[] args) {
+
+        // Create stick array
         int numPencils = getNumPencils();
-
         String player = getFirstPlayer("John", "Jack");
-
-        // create array by player order
-        String[] turnOrder = new String[2];
-        if ("John".equalsIgnoreCase(player)) {
-            turnOrder[0] = "John";
-            turnOrder[1] = "Jack";
-        }
-        else {
-            turnOrder[0] = "Jack";
-            turnOrder[1] = "John";
-        }
-        System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
+        String[] turnOrder = createTurnArray(player, "John", "Jack");
 
         // display information
         char[] stickArray = new char[numPencils];
@@ -54,6 +44,20 @@ public class Main {
     public static String getFirstPlayer(String name0, String name1) {
         System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
         return scanner.next();
+    }
+
+    public static String[] createTurnArray(String player, String name0, String name1) {
+        String[] turnOrder = new String[2];
+        if (name0.equalsIgnoreCase(player)) {
+            turnOrder[0] = name0;
+            turnOrder[1] = name1;
+        }
+        else {
+            turnOrder[0] = name1;
+            turnOrder[1] = name0;
+        }
+        System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
+        return turnOrder;
     }
 
     /*
