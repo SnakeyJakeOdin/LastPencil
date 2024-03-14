@@ -6,9 +6,7 @@ public class Main {
     // public static char[] stickArray;
 
     public static void main(String[] args) {
-        // get number of pencils
-        System.out.println("How many pencils would you like to use:");
-        int numPencils = scanner.nextInt();
+        int numPencils = getNumPencils();
 
         // get first player
         String name0 = "John";
