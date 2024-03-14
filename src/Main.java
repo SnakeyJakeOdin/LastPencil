@@ -8,21 +8,17 @@ public class Main {
     public static void main(String[] args) {
         int numPencils = getNumPencils();
 
-        // get first player
-        String name0 = "John";
-        String name1 = "Jack";
-        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
-        String player = scanner.next();
+        String player = getFirstPlayer("John", "Jack");
 
         // create array by player order
         String[] turnOrder = new String[2];
-        if (name0.equalsIgnoreCase(player)) {
-            turnOrder[0] = name0;
-            turnOrder[1] = name1;
+        if ("John".equalsIgnoreCase(player)) {
+            turnOrder[0] = "John";
+            turnOrder[1] = "Jack";
         }
         else {
-            turnOrder[0] = name1;
-            turnOrder[1] = name0;
+            turnOrder[0] = "Jack";
+            turnOrder[1] = "John";
         }
         System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
 
@@ -53,6 +49,11 @@ public class Main {
     public static int getNumPencils() {
         System.out.println("How many pencils would you like to use:");
         return scanner.nextInt();
+    }
+
+    public static String getFirstPlayer(String name0, String name1) {
+        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
+        return scanner.next();
     }
 
     /*
