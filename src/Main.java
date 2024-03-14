@@ -44,8 +44,16 @@ public class Main {
             n = scanner.nextLine();
             try {
                 int i = Integer.parseInt(n);
-                System.out.println("SUCCESS: Numeric input");
-                isValid = true;
+                if (i == 0) {
+                    System.out.println("ERROR: The number of pencils should be positive");
+                }
+                else if (i < 0) {
+                    System.out.println("ERROR: Not a numeric input (negative)");
+                }
+                else {
+                    System.out.println("SUCCESS: Numeric input");
+                    isValid = true;
+                }
             } catch (Exception e) {
                 System.out.println("ERROR: Not a numeric input.");
             }
