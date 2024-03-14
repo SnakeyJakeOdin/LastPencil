@@ -1,20 +1,24 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    public static char[] stickArray;
 
     public static void main(String[] args) {
-        displayStartingState();
+        int n = getPencilNumber();
+        System.out.println(createString(n));
     }
 
-    public static String getNumPencilsDisplay() {
+    public static int getPencilNumber() {
         System.out.println("How many pencils would you like to use:");
-        int n = scanner.nextInt();    // number of loop iterations
-        String pencils = "";          // physical pencil representation
-        for (int i = 0; i < n; i++) {
-            pencils += "|";
-        }
-        return pencils;
+        return scanner.nextInt();
+    }
+
+    public static String createString(int n) {
+        stickArray = new char[n];
+        Arrays.fill(stickArray, '|');
+        return String.valueOf(stickArray);
     }
 
     public static String getWhoGoesFirst() {
@@ -34,7 +38,4 @@ public class Main {
         }
     }
 
-    public static void displayStartingState() {
-        System.out.printf("%s%n%s is going first!", getNumPencilsDisplay(), getWhoGoesFirst());
-    }
 }
