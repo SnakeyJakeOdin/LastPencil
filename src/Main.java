@@ -9,16 +9,15 @@ public class Main {
 
         // Create stick array
         int numPencils = getNumPencils();
+        char[] stickArray = createStickArray(numPencils);
+        int numSticks = stickArray.length;
+
+        // Create player turn array
         String player = getFirstPlayer("John", "Jack");
         String[] turnOrder = createTurnArray(player, "John", "Jack");
 
-        // display information
-        char[] stickArray = new char[numPencils];
-        int numSticks = stickArray.length;
-        Arrays.fill(stickArray, '|');
+        // Play the game
         System.out.println(stickArray);
-
-        // play the game
         int turn = 0;
         while (numSticks > 0) {
             if (turn % 2 == 0) {
@@ -58,6 +57,12 @@ public class Main {
         }
         System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
         return turnOrder;
+    }
+
+    public static char[] createStickArray(int numPencils) {
+        char[] stickArray = new char[numPencils];
+        Arrays.fill(stickArray, '|');
+        return stickArray;
     }
 
     /*
