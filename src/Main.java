@@ -30,8 +30,22 @@ public class Main {
 
         // display information
         char[] stickArray = new char[numPencils];
+        int numSticks = stickArray.length;
         Arrays.fill(stickArray, '|');
         System.out.println(stickArray);
+
+        // play the game
+        int turn = 0;
+        while (numSticks > 0) {
+            if (turn % 2 == 0) {
+                System.out.printf("%s's turn:%n", turnOrder[0]);
+            }
+            else {
+                System.out.printf("%s's turn:%n", turnOrder[1]);
+            }
+            numSticks--;
+            turn++;
+        }
     }
 
     /*
