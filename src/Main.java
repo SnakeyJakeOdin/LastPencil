@@ -11,9 +11,22 @@ public class Main {
         int numPencils = scanner.nextInt();
 
         // get first player
-        String[] players = new String[]{"John", "Jack"};
-        System.out.printf("Who will be the first (%s, %s):%n", players[0], players[1]);
+        String name0 = "John";
+        String name1 = "Jack";
+        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
         String player = scanner.next();
+
+        // create array by player order
+        String[] turnOrder = new String[2];
+        if (name0.equalsIgnoreCase(player)) {
+            turnOrder[0] = name0;
+            turnOrder[1] = name1;
+        }
+        else {
+            turnOrder[0] = name1;
+            turnOrder[1] = name0;
+        }
+        System.out.printf("This is order of the players: %s%n", Arrays.toString(turnOrder));
 
         // display information
         char[] stickArray = new char[numPencils];
