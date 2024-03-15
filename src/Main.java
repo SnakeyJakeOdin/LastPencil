@@ -13,8 +13,8 @@ public class Main {
 
         // Create player turn array
         String[] players = new String[]{"John", "Jack"};
-        String player = getFirstPlayer(players);
-        String[] turnOrder = createTurnArray(player, "John", "Jack");
+//        String player = getFirstPlayer(players);
+        String[] turnOrder = createTurnArray(getFirstPlayer(players), players);
 
         // Play the game
         System.out.println(stickArray);
@@ -116,15 +116,16 @@ public class Main {
         return s;
     }
 
-    public static String[] createTurnArray(String player, String name0, String name1) {
+    public static String[] createTurnArray(String whoPlaysFirst, String[] players) {
         String[] turnOrder = new String[2];
-        if (name0.equals(player)) {
-            turnOrder[0] = name0;
-            turnOrder[1] = name1;
+
+        if (players[0].equals(whoPlaysFirst)) {
+            turnOrder[0] = players[0];
+            turnOrder[1] = players[1];
         }
         else {
-            turnOrder[0] = name1;
-            turnOrder[1] = name0;
+            turnOrder[0] = players[1];
+            turnOrder[1] = players[0];
         }
         return turnOrder;
     }
