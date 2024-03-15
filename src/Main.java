@@ -10,7 +10,7 @@ public class Main {
         // Create stick array
         int numPencils = getNumPencils();
         char[] stickArray = createStickArray(numPencils);
-        int numSticks = stickArray.length;
+        int remainingSticks = stickArray.length;
 
         // Create player turn array
         String player = getFirstPlayer("John", "Jack");
@@ -19,15 +19,16 @@ public class Main {
         // Play the game
         System.out.println(stickArray);
         int turn = 0;
-        while (numSticks > 0) {
+        while (remainingSticks > 0) {
             if (turn % 2 == 0) {
                 System.out.printf("%s's turn:%n", turnOrder[0]);
             }
             else {
                 System.out.printf("%s's turn:%n", turnOrder[1]);
             }
-            numSticks -= scanner.nextInt();
-            for (int i = 0; i < numSticks; i++) {
+            // TODO: Place new method here
+            remainingSticks -= getNumSticks(remainingSticks);
+            for (int i = 0; i < remainingSticks; i++) {
                 System.out.print(stickArray[i]);
             }
             System.out.println();
@@ -49,6 +50,30 @@ public class Main {
                 }
                 else if (i < 0) {
                     System.out.println("ERROR: Not a numeric input (negative)");
+                }
+                else {
+                    System.out.println("SUCCESS: Numeric input");
+                    isValid = true;
+                }
+            } catch (Exception e) {
+                System.out.println("ERROR: Not a numeric input.");
+            }
+        }
+        return Integer.parseInt(n);
+    }
+
+    public static int getNumSticks(int remainingSticks) {
+        String n = "";
+        boolean isValid = false;
+        while (!isValid) {
+            n = scanner.nextLine();
+            try {
+                int i = Integer.parseInt(n);
+                if (i > 3 || i < 1) {
+                    System.out.println("Possible values: '1', '2' or '3'");
+                }
+                else if (i > remainingSticks) {
+                    System.out.println("Too many pencils were taken.");
                 }
                 else {
                     System.out.println("SUCCESS: Numeric input");
