@@ -9,23 +9,19 @@ public class Main {
 
         // Create stick array
         char[] stickArray = createStickArray(getNumPencils());
-        int remainingSticks = stickArray.length;
 
         // Create player turn array
         String[] players = new String[]{"John", "Jack"};
-//        String player = getFirstPlayer(players);
         String[] turnOrder = createTurnArray(getFirstPlayer(players), players);
 
         // Play the game
         System.out.println(stickArray);
+
+        int remainingSticks = stickArray.length;
         int turn = 0;
+
         while (remainingSticks > 0) {
-            if (turn % 2 == 0) {
-                System.out.printf("%s's turn!%n", turnOrder[0]);
-            }
-            else {
-                System.out.printf("%s's turn!%n", turnOrder[1]);
-            }
+            printTurnOrder(turn, turnOrder);
 
             remainingSticks -= getNumSticks(remainingSticks);
             for (int i = 0; i < remainingSticks; i++) {
@@ -39,13 +35,7 @@ public class Main {
             System.out.println();
         }
 
-        // Display winner
-        if (turn % 2 == 0) {
-            System.out.printf("%s won!%n", turnOrder[0]);
-        }
-        else {
-            System.out.printf("%s won!%n", turnOrder[1]);
-        }
+        printWinner(turn, turnOrder);
     }
 
     public static int getNumPencils() {
@@ -134,6 +124,24 @@ public class Main {
         char[] stickArray = new char[numPencils];
         Arrays.fill(stickArray, '|');
         return stickArray;
+    }
+
+    public static void printTurnOrder(int turn, String[] turnOrder) {
+        if (turn % 2 == 0) {
+            System.out.printf("%s's turn!%n", turnOrder[0]);
+        }
+        else {
+            System.out.printf("%s's turn!%n", turnOrder[1]);
+        }
+    }
+
+    public static void printWinner(int turn, String[] turnOrder) {
+        if (turn % 2 == 0) {
+            System.out.printf("%s won!%n", turnOrder[0]);
+        }
+        else {
+            System.out.printf("%s won!%n", turnOrder[1]);
+        }
     }
 
 }
