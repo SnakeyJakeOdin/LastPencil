@@ -7,31 +7,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Create stick array
+        // create stick array
         char[] stickArray = createStickArray(getNumPencils());
 
-        // Create player turn array
+        // create player turn array
         String[] players = new String[]{"John", "Jack"};
         String[] turnOrder = createTurnArray(getFirstPlayer(players), players);
 
-        // Play the game
-        System.out.println(stickArray);
-
+        // play the game
         int sticks = stickArray.length;
         int turn = 0;
 
         while (sticks > 0) {
-            printTurnOrder(turn, turnOrder);
-
-            sticks -= getNumSticks(sticks);
-            printSticks(sticks, stickArray);
-
-            turn++;
-
-            if (sticks == 0) {  // avoid whitespace for winner's screen
-                break;
-            }
-            System.out.println();
+            printSticks(sticks, stickArray);  // display sticks
+            printPlayerTurn(turn, turnOrder); // display current player's turn
+            sticks -= updateSticks(sticks);   // update total stick counter
+            turn++;                           // move to next turn
         }
 
         printWinner(turn, turnOrder);
@@ -65,7 +56,7 @@ public class Main {
         return Integer.parseInt(s);
     }
 
-    public static int getNumSticks(int remainingSticks) {
+    public static int updateSticks(int remainingSticks) {
         String n = "";
         boolean isValid = false;
         while (!isValid) {
@@ -125,7 +116,7 @@ public class Main {
         return stickArray;
     }
 
-    public static void printTurnOrder(int turn, String[] turnOrder) {
+    public static void printPlayerTurn(int turn, String[] turnOrder) {
         if (turn % 2 == 0) {
             System.out.printf("%s's turn!%n", turnOrder[0]);
         }
@@ -147,6 +138,6 @@ public class Main {
         for (int i = 0; i < sticks; i++) {
             System.out.print(stickArray[i]);
         }
+        System.out.println();
     }
-
 }
