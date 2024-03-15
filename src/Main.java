@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Create stick array
-        int numPencils = getNumPencils();
-        char[] stickArray = createStickArray(numPencils);
+        char[] stickArray = createStickArray(getNumPencils());
         int remainingSticks = stickArray.length;
 
         // Create player turn array
@@ -50,27 +49,30 @@ public class Main {
 
     public static int getNumPencils() {
         System.out.println("How many pencils would you like to use:");
-        String n = "";
 
-        boolean isValid = false;
-        while (!isValid) {
-            n = scanner.nextLine();
+        String s = "";
+        int i = 0;
+
+        while (true) {
+            s = scanner.nextLine();
+
             try {
-                int i = Integer.parseInt(n);
-                if (i == 0) {
-                    System.out.println("The number of pencils should be positive");
-                }
-                else if (i < 0) {
-                    System.out.println("The number of pencils should be numeric");
-                }
-                else {
-                    isValid = true;
-                }
+                i = Integer.parseInt(s);
             } catch (Exception e) {
                 System.out.println("The number of pencils should be numeric");
+                continue;
+            }
+            if (i == 0) {
+                System.out.println("The number of pencils should be positive");
+            }
+            else if (i < 0) {
+                System.out.println("The number of pencils should be numeric");
+            }
+            else {
+                break;
             }
         }
-        return Integer.parseInt(n);
+        return Integer.parseInt(s);
     }
 
     public static int getNumSticks(int remainingSticks) {
