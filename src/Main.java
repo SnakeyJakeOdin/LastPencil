@@ -21,10 +21,10 @@ public class Main {
         int turn = 0;
         while (remainingSticks > 0) {
             if (turn % 2 == 0) {
-                System.out.printf("%s's turn:%n", turnOrder[0]);
+                System.out.printf("%s's turn!%n", turnOrder[0]);
             }
             else {
-                System.out.printf("%s's turn:%n", turnOrder[1]);
+                System.out.printf("%s's turn!%n", turnOrder[1]);
             }
             // TODO: Place new method here
             remainingSticks -= getNumSticks(remainingSticks);
@@ -46,17 +46,16 @@ public class Main {
             try {
                 int i = Integer.parseInt(n);
                 if (i == 0) {
-                    System.out.println("ERROR: The number of pencils should be positive");
+                    System.out.println("The number of pencils should be positive");
                 }
                 else if (i < 0) {
-                    System.out.println("ERROR: Not a numeric input (negative)");
+                    System.out.println("The number of pencils should be numeric");
                 }
                 else {
-                    System.out.println("SUCCESS: Numeric input");
                     isValid = true;
                 }
             } catch (Exception e) {
-                System.out.println("ERROR: Not a numeric input.");
+                System.out.println("The number of pencils should be numeric");
             }
         }
         return Integer.parseInt(n);
@@ -73,24 +72,23 @@ public class Main {
                     System.out.println("Possible values: '1', '2' or '3'");
                 }
                 else if (i > remainingSticks) {
-                    System.out.println("Too many pencils were taken.");
+                    System.out.println("Too many pencils were taken");
                 }
                 else {
-                    System.out.println("SUCCESS: Numeric input");
                     isValid = true;
                 }
             } catch (Exception e) {
-                System.out.println("ERROR: Not a numeric input.");
+                System.out.println("Possible values: '1', '2' or '3'");
             }
         }
         return Integer.parseInt(n);
     }
 
     public static String getFirstPlayer(String name0, String name1) {
+        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
         String s = "";
         boolean isValid = false;
         while (!isValid) {
-            System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
             s = scanner.nextLine();
             if (name0.equals(s) || name1.equals(s)) {
                 isValid = true;
