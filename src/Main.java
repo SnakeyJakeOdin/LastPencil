@@ -17,19 +17,18 @@ public class Main {
         // Play the game
         System.out.println(stickArray);
 
-        int remainingSticks = stickArray.length;
+        int sticks = stickArray.length;
         int turn = 0;
 
-        while (remainingSticks > 0) {
+        while (sticks > 0) {
             printTurnOrder(turn, turnOrder);
 
-            remainingSticks -= getNumSticks(remainingSticks);
-            for (int i = 0; i < remainingSticks; i++) {
-                System.out.print(stickArray[i]);
-            }
+            sticks -= getNumSticks(sticks);
+            printSticks(sticks, stickArray);
 
             turn++;
-            if (remainingSticks == 0) {  // avoid whitespace for winner's screen
+
+            if (sticks == 0) {  // avoid whitespace for winner's screen
                 break;
             }
             System.out.println();
@@ -141,6 +140,12 @@ public class Main {
         }
         else {
             System.out.printf("%s won!%n", turnOrder[1]);
+        }
+    }
+
+    public static void printSticks(int sticks, char[] stickArray) {
+        for (int i = 0; i < sticks; i++) {
+            System.out.print(stickArray[i]);
         }
     }
 
