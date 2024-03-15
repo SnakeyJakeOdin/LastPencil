@@ -12,7 +12,8 @@ public class Main {
         int remainingSticks = stickArray.length;
 
         // Create player turn array
-        String player = getFirstPlayer("John", "Jack");
+        String[] players = new String[]{"John", "Jack"};
+        String player = getFirstPlayer(players);
         String[] turnOrder = createTurnArray(player, "John", "Jack");
 
         // Play the game
@@ -50,8 +51,8 @@ public class Main {
     public static int getNumPencils() {
         System.out.println("How many pencils would you like to use:");
 
-        String s = "";
-        int i = 0;
+        String s;
+        int i;
 
         while (true) {
             s = scanner.nextLine();
@@ -98,17 +99,18 @@ public class Main {
         return Integer.parseInt(n);
     }
 
-    public static String getFirstPlayer(String name0, String name1) {
-        System.out.printf("Who will be the first (%s, %s):%n", name0, name1);
-        String s = "";
-        boolean isValid = false;
-        while (!isValid) {
+    public static String getFirstPlayer(String[] players) {
+        System.out.printf("Who will be the first (%s, %s):%n", players[0], players[1]);
+
+        String s;
+
+        while (true) {
             s = scanner.nextLine();
-            if (name0.equals(s) || name1.equals(s)) {
-                isValid = true;
+            if (players[0].equals(s) || players[1].equals(s)) {
+                break;
             }
             else {
-                System.out.printf("Choose between '%s' and '%s'%n", name0, name1);
+                System.out.printf("Choose between '%s' and '%s'%n", players[0], players[1]);
             }
         }
         return s;
