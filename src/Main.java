@@ -21,7 +21,7 @@ public class Main {
         while (sticks > 0) {
             printSticks(sticks, stickArray);  // display sticks
             printPlayerTurn(turn, turnOrder); // display current player's turn
-            sticks -= updateSticks(sticks);   // update total stick counter
+            sticks -= removedSticks(sticks);   // update total stick counter
             turn++;                           // move to next turn
         }
 
@@ -56,7 +56,7 @@ public class Main {
         return Integer.parseInt(s);
     }
 
-    public static int updateSticks(int remainingSticks) {
+    public static int removedSticks(int remainingSticks) {
         String n = "";
         boolean isValid = false;
         while (!isValid) {
