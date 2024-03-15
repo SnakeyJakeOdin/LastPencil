@@ -26,13 +26,25 @@ public class Main {
             else {
                 System.out.printf("%s's turn!%n", turnOrder[1]);
             }
-            // TODO: Place new method here
+
             remainingSticks -= getNumSticks(remainingSticks);
             for (int i = 0; i < remainingSticks; i++) {
                 System.out.print(stickArray[i]);
             }
-            System.out.println();
+
             turn++;
+            if (remainingSticks == 0) {  // avoid whitespace for winner's screen
+                break;
+            }
+            System.out.println();
+        }
+
+        // Display winner
+        if (turn % 2 == 0) {
+            System.out.printf("%s won!%n", turnOrder[0]);
+        }
+        else {
+            System.out.printf("%s won!%n", turnOrder[1]);
         }
     }
 
