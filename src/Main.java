@@ -21,10 +21,10 @@ public class Main {
         int turn = 0;
 
         while (sticks > 0) {
-            printSticks(sticks, stickArray);  // display sticks
-            printPlayerTurn(turn, turnOrder); // display current player's turn
+            printSticks(sticks, stickArray);                             // display sticks
+            printPlayerTurn(turn, turnOrder);                            // display current player's turn
             sticks -= removedSticks(sticks, turn, turnOrder, players);   // update total stick counter
-            turn++;                           // move to next turn
+            turn++;                                                      // move to next turn
         }
 
         printWinner(turn, turnOrder);
@@ -60,13 +60,13 @@ public class Main {
 
     public static int removedSticks(int remainingSticks, int turn, String[] turnOrder, String[] players) {
         // Players turn
-        String n = "";
+        String s = "";
         if (turnOrder[turn % 2].equals(players[0])) {
             boolean isValid = false;
             while (!isValid) {
-                n = scanner.nextLine();
+                s = scanner.nextLine();
                 try {
-                    int i = Integer.parseInt(n);
+                    int i = Integer.parseInt(s);
                     if (i > 3 || i < 1) {
                         System.out.println("Possible values: '1', '2' or '3'");
                     } else if (i > remainingSticks) {
@@ -78,11 +78,25 @@ public class Main {
                     System.out.println("Possible values: '1', '2' or '3'");
                 }
             }
-            return Integer.parseInt(n);
+            return Integer.parseInt(s);
         }
 
         // Robots turn
-        return 1;
+        int n = 0;
+        if (remainingSticks % 4 == 1) {       // loosing state: doesn't matter
+            n = rand.nextInt(3) + 1;
+        }
+        else if (remainingSticks % 4 == 0) {  // winning state: take 3
+            n = 3;
+        }
+        else if (remainingSticks % 4 == 3) {  // winning state: take 2
+            n = 2;
+        }
+        else {                     // winning state: take 1
+            n = 1;
+        }
+        System.out.println(n);
+        return n;
     }
 
     public static String getFirstPlayer(String[] players) {
