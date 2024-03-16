@@ -22,7 +22,7 @@ public class Main {
 
         while (sticks > 0) {
             printSticks(sticks, stickArray);                             // display sticks
-            printPlayerTurn(turn, turnOrder);                            // display current player's turn
+            printPlayerTurn(turn, turnOrder, players);                            // display current player's turn
             sticks -= removedSticks(sticks, turn, turnOrder, players);   // update total stick counter
             turn++;                                                      // move to next turn
         }
@@ -82,7 +82,7 @@ public class Main {
         }
 
         // Robots turn
-        int n = 0;
+        int n;
         if (remainingSticks % 4 == 1) {       // loosing state: doesn't matter
             n = rand.nextInt(3) + 1;
         }
@@ -136,12 +136,20 @@ public class Main {
         return stickArray;
     }
 
-    public static void printPlayerTurn(int turn, String[] turnOrder) {
+    public static void printPlayerTurn(int turn, String[] turnOrder, String[] players) {
+        String symbol;
+        if (turnOrder[turn % 2].equals(players[0])) {  // players turn
+            symbol = "!";
+        }
+        else {                                         // robots turn
+            symbol = ":";
+        }
+
         if (turn % 2 == 0) {
-            System.out.printf("%s's turn!%n", turnOrder[0]);
+            System.out.printf("%s's turn%s%n", turnOrder[0], symbol);
         }
         else {
-            System.out.printf("%s's turn!%n", turnOrder[1]);
+            System.out.printf("%s's turn%s%n", turnOrder[1], symbol);
         }
     }
 
