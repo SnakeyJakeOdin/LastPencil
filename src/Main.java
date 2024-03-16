@@ -1,8 +1,10 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    public static Random rand = new Random();
     // public static char[] stickArray;
 
     public static void main(String[] args) {
@@ -11,7 +13,7 @@ public class Main {
         char[] stickArray = createStickArray(getNumPencils());
 
         // create player turn array
-        String[] players = new String[]{"John", "Jack"};
+        String[] players = new String[]{"John", "Jack"};  // Jack is the bot
         String[] turnOrder = createTurnArray(getFirstPlayer(players), players);
 
         // play the game
@@ -21,7 +23,7 @@ public class Main {
         while (sticks > 0) {
             printSticks(sticks, stickArray);  // display sticks
             printPlayerTurn(turn, turnOrder); // display current player's turn
-            sticks -= removedSticks(sticks);   // update total stick counter
+            sticks -= removedSticks(sticks, turn, turnOrder, players);   // update total stick counter
             turn++;                           // move to next turn
         }
 
@@ -56,27 +58,31 @@ public class Main {
         return Integer.parseInt(s);
     }
 
-    public static int removedSticks(int remainingSticks) {
+    public static int removedSticks(int remainingSticks, int turn, String[] turnOrder, String[] players) {
+        // Players turn
         String n = "";
-        boolean isValid = false;
-        while (!isValid) {
-            n = scanner.nextLine();
-            try {
-                int i = Integer.parseInt(n);
-                if (i > 3 || i < 1) {
+        if (turnOrder[turn % 2].equals(players[0])) {
+            boolean isValid = false;
+            while (!isValid) {
+                n = scanner.nextLine();
+                try {
+                    int i = Integer.parseInt(n);
+                    if (i > 3 || i < 1) {
+                        System.out.println("Possible values: '1', '2' or '3'");
+                    } else if (i > remainingSticks) {
+                        System.out.println("Too many pencils were taken");
+                    } else {
+                        isValid = true;
+                    }
+                } catch (Exception e) {
                     System.out.println("Possible values: '1', '2' or '3'");
                 }
-                else if (i > remainingSticks) {
-                    System.out.println("Too many pencils were taken");
-                }
-                else {
-                    isValid = true;
-                }
-            } catch (Exception e) {
-                System.out.println("Possible values: '1', '2' or '3'");
             }
+            return Integer.parseInt(n);
         }
-        return Integer.parseInt(n);
+
+        // Robots turn
+        return 1;
     }
 
     public static String getFirstPlayer(String[] players) {
