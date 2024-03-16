@@ -22,7 +22,7 @@ public class Main {
 
         while (sticks > 0) {
             printSticks(sticks, stickArray);                             // display sticks
-            printPlayerTurn(turn, turnOrder, players);                            // display current player's turn
+            printPlayerTurn(turn, turnOrder, players);                   // display current player's turn
             sticks -= removedSticks(sticks, turn, turnOrder, players);   // update total stick counter
             turn++;                                                      // move to next turn
         }
